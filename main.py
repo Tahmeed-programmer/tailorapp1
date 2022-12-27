@@ -45,4 +45,6 @@ def image_process(link2:Item2):
     person=model5.detect2.loc[model5.detect2["class_name"]=="person"]
     height=person["h"]
     width=person["w"]
-    return json.dumps({"height":height,"width":width})
+    with open("./img2.png", "rb") as img_file:
+        my_string = base64.b64encode(img_file.read())
+    return json.dumps({"height":height,"width":width,"img":my_string})
